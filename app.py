@@ -1,6 +1,7 @@
 import streamlit as st
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from prompt import SYSTEM_PROMPT
 
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
@@ -15,7 +16,7 @@ def load_resources():
 
 retriever, llm = load_resources()
 
-st.title("Nexus AI Tutor")
+st.title("Tutor EDruptiva - Happy Code")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -28,11 +29,22 @@ if prompt := st.chat_input("Escreve a tua pergunta..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
+
     with st.chat_message("assistant"):
         docs = retriever.invoke(prompt)
         context = "\n\n".join([doc.page_content for doc in docs])
-        full_prompt = f"{SYSTEM_PROMPT}\n\nContexto dos documentos da Happy Code:\n{context}\n\nPergunta do aluno: {prompt}"
-        response = llm.invoke(full_prompt)
+
+        messages_for_llm = [
+            SystemMessage(content=f"{SYSTEM_PROMPT}\n\nContexto dos documentos da Happy Code:\n{context}")
+        ]
+        for msg in st.session_state.messages[:-1]:
+            if msg["role"] == "user":
+                messages_for_llm.append(HumanMessage(content=msg["content"]))
+            else:
+                messages_for_llm.append(AIMessage(content=msg["content"]))
+        messages_for_llm.append(HumanMessage(content=prompt))
+
+        response = llm.invoke(messages_for_llm)
         answer = response.content
         st.write(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
