@@ -3,8 +3,10 @@ from langchain_community.document_loaders import DirectoryLoader, Docx2txtLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
+import os
 
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
 
 loader = DirectoryLoader("docs", glob="**/*.docx", loader_cls=Docx2txtLoader)
 documents = loader.load()

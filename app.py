@@ -3,8 +3,11 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from prompt import SYSTEM_PROMPT
+import os
 
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+
 
 @st.cache_resource
 def load_resources():
