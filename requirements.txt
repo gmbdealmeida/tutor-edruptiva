@@ -6,3 +6,4 @@ langchain-text-splitters
 chromadb
 openai
 docx2txt
+pysqlite3-binary
