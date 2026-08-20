@@ -27,7 +27,7 @@ footer {visibility: hidden;}
 [data-testid="stToolbar"] {display: none;}
 </style>
 """, unsafe_allow_html=True)
-st.title("Tutor EDruptiva - Happy Code")
+st.title("Jimmy - O assistente da Happy Code")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
