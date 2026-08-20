@@ -25,6 +25,9 @@ st.markdown("""
 <style>
 footer {visibility: hidden;}
 [data-testid="stToolbar"] {display: none;}
+[data-testid="stBottomBlockContainer"] > div:last-child {display: none;}
+.stAppEmbeddingBadge, [class*="viewerBadge"] {display: none !important;}
+[data-testid="stStatusWidget"] {display: none;}
 </style>
 """, unsafe_allow_html=True)
 st.title("Jimmy - O assistente da Happy Code")
