@@ -21,7 +21,12 @@ def load_resources():
     return retriever, llm
 
 retriever, llm = load_resources()
-
+st.markdown("""
+<style>
+footer {visibility: hidden;}
+[data-testid="stToolbar"] {display: none;}
+</style>
+""", unsafe_allow_html=True)
 st.title("Tutor EDruptiva - Happy Code")
 
 if "messages" not in st.session_state:
