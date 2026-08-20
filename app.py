@@ -30,7 +30,7 @@ footer {visibility: hidden;}
 [data-testid="stStatusWidget"] {display: none;}
 </style>
 """, unsafe_allow_html=True)
-st.title("Jimmy - O assistente da Happy Code")
+st.title("Jimmy")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
