@@ -21,6 +21,7 @@ def load_resources():
     return retriever, llm
 
 retriever, llm = load_resources()
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -33,8 +34,11 @@ h1, h2, h3, h4, h5, h6, p, div, span, label, button {
 [data-testid="stIconMaterial"], .material-icons, [class*="material-symbols"] {
     font-family: 'Material Symbols Rounded' !important;
 }
+
+[data-testid="stHeaderActionElements"] {display: none !important;}
 </style>
 """, unsafe_allow_html=True)
+
 st.title("Jimmy")
 
 if "messages" not in st.session_state:
