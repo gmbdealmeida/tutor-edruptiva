@@ -25,8 +25,13 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-html, body, [class*="st-"], .stMarkdown, .stChatInput textarea {
+html, body, .stMarkdown, .stChatInput textarea,
+h1, h2, h3, h4, h5, h6, p, div, span, label, button {
     font-family: 'Roboto', sans-serif !important;
+}
+
+[data-testid="stIconMaterial"], .material-icons, [class*="material-symbols"] {
+    font-family: 'Material Symbols Rounded' !important;
 }
 </style>
 """, unsafe_allow_html=True)
