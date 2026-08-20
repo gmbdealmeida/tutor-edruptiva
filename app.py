@@ -21,7 +21,15 @@ def load_resources():
     return retriever, llm
 
 retriever, llm = load_resources()
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+html, body, [class*="st-"], .stMarkdown, .stChatInput textarea {
+    font-family: 'Roboto', sans-serif !important;
+}
+</style>
+""", unsafe_allow_html=True)
 st.title("Jimmy")
 
 if "messages" not in st.session_state:
