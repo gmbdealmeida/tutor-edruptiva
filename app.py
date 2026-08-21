@@ -65,9 +65,14 @@ h1, h2, h3, h4, h5, h6 {{
 }}
 
 .stMainBlockContainer, [data-testid="stMainBlockContainer"] {{
-    padding-top: 0.5rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+    padding-top: 0 !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+}}
+
+[data-testid="stChatMessage"] {{
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
 }}
 
 </style>
