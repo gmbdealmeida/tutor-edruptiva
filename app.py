@@ -5,7 +5,6 @@ try:
     sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 except (ImportError, KeyError):
     pass
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma
