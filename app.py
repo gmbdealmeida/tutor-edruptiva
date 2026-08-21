@@ -1,6 +1,5 @@
 __import__('pysqlite3')
 import sys
-from turtle import fill
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
