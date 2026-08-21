@@ -22,20 +22,29 @@ def load_resources():
 
 retriever, llm = load_resources()
 
-st.markdown("""
+with open("kobe.css") as f:
+    kobe_css = f.read()
+
+st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+{kobe_css}
 
 html, body, .stMarkdown, .stChatInput textarea,
-h1, h2, h3, h4, h5, h6, p, div, span, label, button {
+p, div, span, label, button {{
     font-family: 'Roboto', sans-serif !important;
-}
+}}
 
-[data-testid="stIconMaterial"], .material-icons, [class*="material-symbols"] {
+h1, h2, h3, h4, h5, h6 {{
+    font-family: 'Kobe', 'Roboto', sans-serif !important;
+    font-weight: 700 !important;
+}}
+
+[data-testid="stIconMaterial"], .material-icons, [class*="material-symbols"] {{
     font-family: 'Material Symbols Rounded' !important;
-}
+}}
 
-[data-testid="stHeaderActionElements"] {display: none !important;}
+[data-testid="stHeaderActionElements"] {{display: none !important;}}
 </style>
 """, unsafe_allow_html=True)
 
