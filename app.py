@@ -63,7 +63,6 @@ h1, h2, h3, h4, h5, h6 {{
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Jimmy")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
