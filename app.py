@@ -1,5 +1,6 @@
 __import__('pysqlite3')
 import sys
+from turtle import fill
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
@@ -30,6 +31,7 @@ st.markdown(f"""
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 {kobe_css}
 
+
 html, body, .stMarkdown, .stChatInput textarea,
 p, div, span, label, button {{
     font-family: 'Roboto', sans-serif !important;
@@ -44,7 +46,21 @@ h1, h2, h3, h4, h5, h6 {{
     font-family: 'Material Symbols Rounded' !important;
 }}
 
-[data-testid="stHeaderActionElements"] {{display: none !important;}}
+[data-testid="stHeaderActionElements"] {{
+    display: none !important;
+}}
+
+[data-testid="stChatMessageAvatarUser"] {{
+    background-color: #353f49 !important;
+}}
+[data-testid="stChatMessageAvatarAssistant"] {{
+    background-color: #aecc53 !important;
+}}
+[data-testid="stChatMessageAvatarUser"] svg,
+[data-testid="stChatMessageAvatarAssistant"] svg {{
+    fill: #ffffff !important;
+}}
+
 </style>
 """, unsafe_allow_html=True)
 
