@@ -65,7 +65,9 @@ h1, h2, h3, h4, h5, h6 {{
 
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [
+        {"role": "assistant", "content": "Olá! Sou o Jimmy, o teu tutor da Happy Code. Posso ajudar-te a perceber conceitos, destravar exercícios ou pensar em ideias para os teus projetos.\n\nExperimenta perguntar-me:\n- Como funciona um ciclo em Scratch?\n- Estou preso neste exercício, ajudas-me a pensar?\n- Dá-me ideias para um projeto de robótica"}
+    ]
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
