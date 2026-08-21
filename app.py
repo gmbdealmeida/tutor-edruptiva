@@ -1,5 +1,10 @@
 __import__('pysqlite3')
 import sys
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except (ImportError, KeyError):
+    pass
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 import streamlit as st
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
