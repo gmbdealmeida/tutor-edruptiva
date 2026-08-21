@@ -64,6 +64,10 @@ h1, h2, h3, h4, h5, h6 {{
     fill: #ffffff !important;
 }}
 
+.stMainBlockContainer, [data-testid="stMainBlockContainer"] {{
+    padding-top: 1rem !important;
+}}
+
 </style>
 """, unsafe_allow_html=True)
 
