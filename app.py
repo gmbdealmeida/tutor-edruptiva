@@ -65,7 +65,9 @@ h1, h2, h3, h4, h5, h6 {{
 }}
 
 .stMainBlockContainer, [data-testid="stMainBlockContainer"] {{
-    padding-top: 1rem !important;
+    padding-top: 0.5rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
 }}
 
 </style>
