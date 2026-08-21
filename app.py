@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {{
 }}
 
 [data-testid="stChatMessageAvatarUser"] {{
-    background-color: #353f49 !important;
+    background-color: #e66468 !important;
 }}
 [data-testid="stChatMessageAvatarAssistant"] {{
     background-color: #aecc53 !important;
