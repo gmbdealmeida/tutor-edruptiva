@@ -81,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {{
 
 if "messages" not in st.session_state:
     st.session_state.messages = [
-        {"role": "assistant", "content": "Olá! Sou o Jimmy. Em que posso ajudar-te hoje?"}
+        {"role": "assistant", "content": "Olá! Sou o Coddy. Em que posso ajudar-te hoje?"}
     ]
 
 for message in st.session_state.messages:
