@@ -7,3 +7,4 @@ chromadb
 openai
 docx2txt
 pysqlite3-binary
+azure-storage-blob
