@@ -115,7 +115,8 @@ if "messages" not in st.session_state:
     ]
 
 for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
+    avatar = "coddy_icon.png" if message["role"] == "assistant" else None
+    with st.chat_message(message["role"], avatar=avatar):
         st.write(message["content"])
 
 if prompt := st.chat_input("Escreve a tua pergunta..."):
@@ -123,21 +124,26 @@ if prompt := st.chat_input("Escreve a tua pergunta..."):
     with st.chat_message("user"):
         st.write(prompt)
 
-    with st.chat_message("assistant"):
-        docs = retriever.invoke(prompt)
-        context = "\n\n".join([doc.page_content for doc in docs])
+    with st.chat_message("assistant", avatar="coddy_icon.png"):
+        if conteudo_sinalizado(prompt):
+            answer = MENSAGEM_CONTEUDO_PREOCUPANTE
+            st.write(answer)
+        else:
+            docs = retriever.invoke(prompt)
+            context = "\n\n".join([doc.page_content for doc in docs])
 
-        messages_for_llm = [
-            SystemMessage(content=f"{SYSTEM_PROMPT}\n\nContexto dos documentos da Happy Code:\n{context}")
-        ]
-        for msg in st.session_state.messages[:-1]:
-            if msg["role"] == "user":
-                messages_for_llm.append(HumanMessage(content=msg["content"]))
-            else:
-                messages_for_llm.append(AIMessage(content=msg["content"]))
-        messages_for_llm.append(HumanMessage(content=prompt))
+            messages_for_llm = [
+                SystemMessage(content=f"{SYSTEM_PROMPT}\n\nContexto dos documentos da Happy Code:\n{context}")
+            ]
+            for msg in st.session_state.messages[:-1]:
+                if msg["role"] == "user":
+                    messages_for_llm.append(HumanMessage(content=msg["content"]))
+                else:
+                    messages_for_llm.append(AIMessage(content=msg["content"]))
+            messages_for_llm.append(HumanMessage(content=prompt))
 
-        response = llm.invoke(messages_for_llm)
-        answer = response.content
-        st.write(answer)
+            response = llm.invoke(messages_for_llm)
+            answer = response.content
+            st.write(answer)
+
         st.session_state.messages.append({"role": "assistant", "content": answer})
