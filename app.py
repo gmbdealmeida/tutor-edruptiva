@@ -11,6 +11,7 @@ from langchain_community.vectorstores import Chroma
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from azure.storage.blob import BlobServiceClient
 from prompt import SYSTEM_PROMPT
+from openai import OpenAI
 import os
 
 
@@ -40,6 +41,18 @@ def load_resources():
     retriever = vectorstore.as_retriever()
     llm = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY, temperature=0.7)
     return retriever, llm
+
+moderation_client = OpenAI(api_key=OPENAI_API_KEY)
+
+MENSAGEM_CONTEUDO_PREOCUPANTE = (
+    "Não consigo ajudar com isso por aqui. Se estás a passar por um momento difícil, "
+    "fala com um professor, um adulto de confiança ou alguém da tua família — é importante "
+    "que não fiques sozinho/a com isto."
+)
+
+def conteudo_sinalizado(texto):
+    resultado = moderation_client.moderations.create(input=texto)
+    return resultado.results[0].flagged
 
 retriever, llm = load_resources()
 
