@@ -38,7 +38,7 @@ ensure_chroma_db()
 def load_resources():
     embeddings = OpenAIEmbeddings(api_key=OPENAI_API_KEY)
     vectorstore = Chroma(persist_directory="chroma_db", embedding_function=embeddings)
-    retriever = vectorstore.as_retriever()
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 10})
     llm = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY, temperature=0.7)
     return retriever, llm
 
