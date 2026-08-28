@@ -115,16 +115,16 @@ if "messages" not in st.session_state:
     ]
 
 for message in st.session_state.messages:
-    avatar = "coddy_icon.png" if message["role"] == "assistant" else None
+    avatar = "assets/coddy_icon_2d.png" if message["role"] == "assistant" else "assets/aluno_icon_2d.png"
     with st.chat_message(message["role"], avatar=avatar):
         st.write(message["content"])
 
 if prompt := st.chat_input("Escreve a tua pergunta..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="assets/aluno_icon.png"):
         st.write(prompt)
 
-    with st.chat_message("assistant", avatar="coddy_icon.png"):
+    with st.chat_message("assistant", avatar="assets/coddy_icon_2d.png"):
         if conteudo_sinalizado(prompt):
             answer = MENSAGEM_CONTEUDO_PREOCUPANTE
             st.write(answer)
