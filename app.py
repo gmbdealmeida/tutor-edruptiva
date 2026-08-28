@@ -121,7 +121,7 @@ for message in st.session_state.messages:
 
 if prompt := st.chat_input("Escreve a tua pergunta..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user", avatar="assets/aluno_icon.png"):
+    with st.chat_message("user", avatar="assets/aluno_icon_2d.png"):
         st.write(prompt)
 
     with st.chat_message("assistant", avatar="assets/coddy_icon_2d.png"):
